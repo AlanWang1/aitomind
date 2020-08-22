@@ -7,6 +7,7 @@ const FileUpload = (props) => {
   const [filename, setFilename] = useState("");
   const [uploadedFile, setUploadedFile] = useState({});
   const [uploadPercentage, setUploadPercentage] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
 
   const onChange = (e) => {
     setFile(e.target.files[0]);
@@ -17,6 +18,7 @@ const FileUpload = (props) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
+    setIsUploading(true);
     try {
       const res = await axios.post("http://localhost:5000/upload", formData, {
         headers: {
@@ -38,6 +40,7 @@ const FileUpload = (props) => {
       //has to be before setState
       props.onUpload(filePath);
       setUploadedFile({ fileName, filePath });
+      setIsUploading(false);
     } catch (err) {
       if (err.response.status === 500) {
         console.log(err);
@@ -48,7 +51,7 @@ const FileUpload = (props) => {
   };
 
   return (
-    <Fragment>
+    <div>
       <form onSubmit={onSubmit}>
         <div className="columns">
           <div className="file has-name is-boxed">
@@ -64,13 +67,17 @@ const FileUpload = (props) => {
             </label>
           </div>
         </div>
-        <div className="columns is-centered" style={{padding:"2ch 0ch"}}>
+        <div className="columns is-centered" style={{ padding: "2ch 0ch" }}>
           <button className="button is-primary" type="submit">
             Upload
           </button>
         </div>
       </form>
-    </Fragment>
+      {isUploading ? 
+        <Progress percentage={uploadPercentage} /> 
+
+        : null}
+    </div>
   );
 };
 

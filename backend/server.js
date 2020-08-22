@@ -45,6 +45,7 @@ app.post('/upload', (req, res) => {
     //transcribe(`../frontend/public/uploads/${file.name}`);
   });
 
+
 /* (async () => {
     let response = await transcribe(`../frontend/public/uploads/${file.name}`);
     let text = await response;

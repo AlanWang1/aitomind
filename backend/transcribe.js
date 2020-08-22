@@ -82,7 +82,7 @@ recognizer.startContinuousRecognitionAsync();
        // console.log("\n    Session stopped event.");
        recognizer.stopContinuousRecognitionAsync();
        recognizer.close()
-        return console.log(str)
+       return console.log(str)
         
     };
 

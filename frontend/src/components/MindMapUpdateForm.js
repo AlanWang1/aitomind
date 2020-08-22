@@ -14,6 +14,14 @@ export default class MindMapUpdateForm extends Component {
   updateChange(e){
       this.setState({[e.target.name]:e.target.value})
   }
+  sendUpdate(e){
+    const node={
+        text:`${this.state.name} ${this.state.timestamp}`
+    }
+    const outbound=this.state.connections.split(", ");
+    const connections =[]
+
+  }
   render() {
     return (
       <div>
@@ -21,7 +29,7 @@ export default class MindMapUpdateForm extends Component {
           <p className="column is-size-4 has-text-weight-bold"> </p>
         </div>
 
-        <form>
+        <form onSubmit={this.sendUpdate}>
           <div className="columns is-multiline ">
             <div className="column is-9">
               <label className="label has-text-weight-medium">Name</label>
