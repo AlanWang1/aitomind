@@ -1,16 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
 
-const Progress = ({ percentage }) => {
+const Progress = (props) => {
   return (
-    <progress className='progress is-primary' value={`${percentage}%`}>
-    
-    </progress>
+    <div>
+      <progress
+        className="progress is-primary"
+        value={`${props.percentage}`}
+        max="100"
+      ></progress>
+    </div>
   );
-};
-
-Progress.propTypes = {
-  percentage: PropTypes.number.isRequired
 };
 
 export default Progress;

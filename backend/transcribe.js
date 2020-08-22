@@ -84,9 +84,12 @@ recognizer.startContinuousRecognitionAsync();
        // console.log("\n    Session stopped event.");
        recognizer.stopContinuousRecognitionAsync();
        recognizer.close()
-       keywords(str)
+       
+
+keywords(str)
        //entities(str)
        //return(console.log(str))
+       return console.log(str)
         
     };
       

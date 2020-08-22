@@ -4,8 +4,7 @@ import Mindmap from "../components/Mindmap";
 import "./mindmap.css";
 import Video from "../components/Video";
 import axios from "axios";
-import MindMapFetchForm from "../components/MindMapFetchForm";
-import MindMapUpdateForm from '../components/MindMapUpdateForm';
+
 
 export default class MindMapPage extends Component {
   constructor(props) {
@@ -18,10 +17,13 @@ export default class MindMapPage extends Component {
     };
     this.handleUpload = this.handleUpload.bind(this);
     this.handleMindMapFetch = this.handleMindMapFetch.bind(this);
-    this.handleFieldChange = this.handleFieldChange.bind(this);
+    this.handleFetchFieldChange = this.handleFetchFieldChange.bind(this);
+    this.handleMindMapUpdate = this.handleMindMapUpdate.bind(this);
   }
+
   handleUpload(path) {
     this.setState({ videoPath: path });
+    //set state nodes and connections from what was passed in (will have new parameters)
   }
 
   async handleMindMapFetch(e) {
@@ -38,14 +40,20 @@ export default class MindMapPage extends Component {
     });
   }
 
-  handleFieldChange(e) {
+  //unused because no text fields (fetching or otherwise)
+  handleFetchFieldChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+  //unused because no mindmap updating
+  handleMindMapUpdate(node, connections){
+   
   }
 
   render() {
     const container = {
       height: "60vh",
       display: "flex",
+      marginTop:"10vh"
     };
     const videoArea = {
       alignSelf: "center",
@@ -59,18 +67,18 @@ export default class MindMapPage extends Component {
           <div className="columns is-centered" style={container}>
             <div className="column columns is-centered" style={videoArea}>
               {this.state.videoPath ? (
-                <div className="section">
+                <div className="column">
                    <Video url={this.state.videoPath} />
                 </div>
               ) : (
         
                 <FileUpload onUpload={this.handleUpload} />
                
-              )}
+              )} 
             </div>
           </div>
-        <MindMapUpdateForm  />
-      
+       {/* <MindMapUpdateForm onUpdate={this.handleMindMapUpdate} />*/}
+        {/*have to import if want to use again */}
         </div>
         <div className="column is-4 ">
           {(this.state.nodes.length !== 0 &&
@@ -81,8 +89,9 @@ export default class MindMapPage extends Component {
             />
           ) : (
             <div>
-              <MindMapFetchForm onChange={this.handleFieldChange} onSubmit={this.handleMindMapFetch} />
-             
+             {/*MindMapFetchForm onChange={this.handleFetchFieldChange} onSubmit={this.handleMindMapFetch} />*/}
+             {/*Have to import if want to use again*/}
+             Your mindmap will appear here
             </div>
           )}
           
