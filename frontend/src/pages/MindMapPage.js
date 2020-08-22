@@ -4,7 +4,7 @@ import Mindmap from "../components/Mindmap";
 import "./mindmap.css";
 import Video from "../components/Video";
 import axios from "axios";
-
+import "bulma-divider/dist/css/bulma-divider.min.css";
 
 export default class MindMapPage extends Component {
   constructor(props) {
@@ -45,18 +45,20 @@ export default class MindMapPage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
   //unused because no mindmap updating
-  handleMindMapUpdate(node, connections){
-   
-  }
+  handleMindMapUpdate(node, connections) {}
 
   render() {
     const container = {
       height: "60vh",
       display: "flex",
-      marginTop:"10vh"
+      marginTop: "10vh",
     };
     const videoArea = {
       alignSelf: "center",
+    };
+    const mindMap = {
+      textAlign: "center",
+      display: "flex",
     };
     return (
       <div
@@ -65,36 +67,53 @@ export default class MindMapPage extends Component {
       >
         <div className="column is-8">
           <div className="columns is-centered" style={container}>
-            <div className="column columns is-centered" style={videoArea}>
+            <div className="columns is-centered" style={videoArea}>
               {this.state.videoPath ? (
                 <div className="column">
-                   <Video url={this.state.videoPath} />
+                  <Video url={this.state.videoPath} />
                 </div>
               ) : (
-        
-                <FileUpload onUpload={this.handleUpload} />
-               
-              )} 
+                <div className="column">
+                  <FileUpload onUpload={this.handleUpload} />
+                </div>
+              )}
             </div>
           </div>
-       {/* <MindMapUpdateForm onUpdate={this.handleMindMapUpdate} />*/}
-        {/*have to import if want to use again */}
+          {/* <MindMapUpdateForm onUpdate={this.handleMindMapUpdate} />*/}
+          {/*have to import if want to use again */}
         </div>
-        <div className="column is-4 ">
-          {(this.state.nodes.length !== 0 &&
-          this.state.connections.length !== 0) ? (
+        <div class="is-divider-vertical"></div>
+        <div className="column is-4 columns is-centered" style={mindMap}>
+          {this.state.nodes.length !== 0 &&
+          this.state.connections.length !== 0 ? (
             <Mindmap
               nodes={this.state.nodes}
               connections={this.state.connections}
             />
           ) : (
-            <div>
-             {/*MindMapFetchForm onChange={this.handleFetchFieldChange} onSubmit={this.handleMindMapFetch} />*/}
-             {/*Have to import if want to use again*/}
-             Your mindmap will appear here
+            <div
+              style={{
+                alignSelf: "center",
+                justifySelf: "center",
+              }}
+            >
+              <img
+                src="\img\Books.svg"
+                style={{
+                  width: "120%",
+                  height: "auto",
+                  marginBottom: "2ch",
+                }}
+                className="column"
+              ></img>
+              <div className="columns">
+                <p className=" column is-size-5">
+                  {" "}
+                  Your Mindmap will Appear Here
+                </p>
+              </div>
             </div>
           )}
-          
         </div>
       </div>
     );

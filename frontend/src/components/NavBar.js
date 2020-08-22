@@ -2,7 +2,8 @@ import React from "react";
 
 export default function NavBar() {
   const style = {
-    margin: "0% 0% 2ch 0%",
+    margin: "0% 0% 4ch 0%",
+    borderBottom: "0.1ch solid rgb(230, 230, 230)"
   };
   return (
     <nav className="navbar" style={style}>

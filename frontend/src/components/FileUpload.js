@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import axios from "axios";
+import Progress from "./Progress";
 
 const FileUpload = (props) => {
   const [file, setFile] = useState("");
@@ -59,26 +60,39 @@ const FileUpload = (props) => {
           <div className="file has-name is-boxed">
             <label className="file-label">
               <input className="file-input" type="file" onChange={onChange} />
-              <span className="file-cta is-primary">
+              <span className="file-cta">
                 <span className="file-icon">
                   <i className="fas fa-upload"></i>
                 </span>
-                <span className="file-label">Upload a Video... </span>
+                <span className="file-label">Upload a Video</span>
               </span>
-              <span className="file-name"> {filename} </span>
+              <span className="file-name">{filename}</span>
             </label>
           </div>
         </div>
+
         <div className="columns is-centered" style={{ padding: "2ch 0ch" }}>
-          {isUploading ? (
+          {/*isUploading ? (
             <button className="button is-primary is-loading">Upload</button>
           ) : (
             <button className="button is-primary" type="submit">
               Upload
             </button>
-          )}
+          )*/}
+          <button className="button is-primary" type="submit">
+            Upload
+          </button>
         </div>
       </form>
+
+      {isUploading ? (
+        <div className="columns">
+          {" "}
+          <div className="column">
+            <Progress percentage={uploadPercentage} />
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };
