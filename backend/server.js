@@ -34,7 +34,7 @@ app.post('/upload', (req, res) => {
 
   const file = req.files.file;
 
-  file.mv(`../frontend/public/uploads/${file.name}`, err => {
+  file.mv(`../frontend/public/uploads/${file.name}`, err => { //executes once video file moved
     
     if (err) {
       console.error(err);
