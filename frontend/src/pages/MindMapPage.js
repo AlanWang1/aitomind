@@ -4,6 +4,7 @@ import Mindmap from "../components/Mindmap";
 import "./mindmap.css";
 import Video from "../components/Video";
 import axios from "axios";
+import MindMapFetch from "../components/MindMapFetch";
 
 export default class MindMapPage extends Component {
   constructor(props) {
@@ -121,26 +122,7 @@ export default class MindMapPage extends Component {
               connections={this.state.connections}
             />
           ) : (
-            <form onSubmit={this.handleMindMapFetch}>
-              <label className="label has-text-weight-medium">
-                Fetch a Mindmap
-              </label>
-              <div className="control">
-                <input
-                  className="input is-small"
-                  type="text"
-                  name="id"
-                  placeholder="Text input"
-                  onChange={this.handleFieldChange}
-                />
-                <button
-                  className="button is-primary is-pulled-right"
-                  type="submit"
-                >
-                  Add
-                </button>
-              </div>
-            </form>
+            <MindMapFetch onChange={this.handleFieldChange} onSubmit={this.handleMindMapFetch} />
           )}
           
         </div>
