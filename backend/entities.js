@@ -25,7 +25,7 @@ module.exports = function(input) {
     fetch(link, {method: 'POST', headers: headers, body: body})
                 .then(response => response.json()) 
                 .then(responseData => {
-                return console.log(responseData.documents[0]);
+                return console.log(responseData.documents[0].entities);
                 });
                 
                 

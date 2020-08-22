@@ -1,4 +1,6 @@
 module.exports = function(path) {
+  const keywords = require('./keywords.js')
+  const entities = require('./entities.js') 
     //"use strict";
     //console.log(path);
     // pull in the required packages.
@@ -82,12 +84,17 @@ recognizer.startContinuousRecognitionAsync();
        // console.log("\n    Session stopped event.");
        recognizer.stopContinuousRecognitionAsync();
        recognizer.close()
+       
+
+keywords(str)
+       //entities(str)
+       //return(console.log(str))
        return console.log(str)
         
     };
-
+      
   
-recognizer.stopContinuousRecognitionAsync();
+//recognizer.stopContinuousRecognitionAsync();
 
     // </code>
     
