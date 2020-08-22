@@ -25,7 +25,7 @@ const body = (
 fetch(link, {method: 'POST', headers: headers, body: body})
             .then(response => response.json()) 
             .then(responseData => {
-            return console.log(responseData.documents);
+            return console.log(responseData.documents[0]);
             });
             
             
