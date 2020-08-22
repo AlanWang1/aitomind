@@ -80,8 +80,10 @@ recognizer.startContinuousRecognitionAsync();
   recognizer.sessionStopped = (s, e) => {
     
        // console.log("\n    Session stopped event.");
+       recognizer.stopContinuousRecognitionAsync();
+       recognizer.close()
         return console.log(str)
-        recognizer.stopContinuousRecognitionAsync();
+        
     };
 
   
