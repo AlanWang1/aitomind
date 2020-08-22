@@ -58,9 +58,9 @@ const FileUpload = (props) => {
                 <span className="file-icon">
                   <i className="fas fa-upload"></i>
                 </span>
-                <span class="file-label">Upload a File... </span>
+                <span className="file-label">Upload a File... </span>
               </span>
-              <span class="file-name"> {filename} </span>
+              <span className="file-name"> {filename} </span>
             </label>
           </div>
         </div>

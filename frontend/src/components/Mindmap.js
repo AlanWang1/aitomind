@@ -13,7 +13,7 @@ export default class Mindmap extends Component {
     return (
         //has to be editable=false (default), or else will have moving issues
       <div style={style}>
-        <MindMap nodes={map.nodes} connections={map.connections}/>
+        <MindMap nodes={this.props.nodes} connections={this.props.connections}/>
       </div>
     );
   }

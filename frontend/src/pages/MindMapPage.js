@@ -3,18 +3,43 @@ import FileUpload from "../components/FileUpload";
 import Mindmap from "../components/Mindmap";
 import "./mindmap.css";
 import Video from "../components/Video";
+import axios from "axios";
 
 export default class MindMapPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       videoPath: "",
+      nodes: [],
+      connections: [],
+      id: "",
     };
     this.handleUpload = this.handleUpload.bind(this);
+    this.handleMindMapFetch = this.handleMindMapFetch.bind(this);
+    this.handleFieldChange = this.handleFieldChange.bind(this);
   }
   handleUpload(path) {
     this.setState({ videoPath: path });
   }
+
+  async handleMindMapFetch(e) {
+    e.preventDefault();
+    const id = this.state.id;
+    console.log(id);
+    const response = await axios.get(
+      `http://localhost:5000/api/mindmaps/${id}`
+    );
+    console.log(response);
+    this.setState({
+      nodes: response.data.nodes,
+      connections: response.data.connections,
+    });
+  }
+
+  handleFieldChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   render() {
     const container = {
       height: "60vh",
@@ -24,7 +49,10 @@ export default class MindMapPage extends Component {
       alignSelf: "center",
     };
     return (
-      <div className="columns" style={{paddingLeft:"5ch", paddingRight:"5ch"}}>
+      <div
+        className="columns"
+        style={{ paddingLeft: "5ch", paddingRight: "5ch" }}
+      >
         <div className="column is-8">
           <div className="columns is-centered" style={container}>
             <div className="column columns is-centered" style={videoArea}>
@@ -35,9 +63,12 @@ export default class MindMapPage extends Component {
               )}
             </div>
           </div>
-                
+
           <div className="columns">
-            <p className="column is-size-4 has-text-weight-bold"> Add a Node </p>
+            <p className="column is-size-4 has-text-weight-bold">
+              {" "}
+              Add a Node{" "}
+            </p>
           </div>
 
           <form>
@@ -78,12 +109,40 @@ export default class MindMapPage extends Component {
               </div>
             </div>
             <button className="button is-primary is-pulled-right" type="submit">
-                Add
+              Add
             </button>
           </form>
         </div>
         <div className="column is-4 ">
-          <Mindmap />
+          {(this.state.nodes.length !== 0 &&
+          this.state.connections.length !== 0) ? (
+            <Mindmap
+              nodes={this.state.nodes}
+              connections={this.state.connections}
+            />
+          ) : (
+            <form onSubmit={this.handleMindMapFetch}>
+              <label className="label has-text-weight-medium">
+                Fetch a Mindmap
+              </label>
+              <div className="control">
+                <input
+                  className="input is-small"
+                  type="text"
+                  name="id"
+                  placeholder="Text input"
+                  onChange={this.handleFieldChange}
+                />
+                <button
+                  className="button is-primary is-pulled-right"
+                  type="submit"
+                >
+                  Add
+                </button>
+              </div>
+            </form>
+          )}
+          
         </div>
       </div>
     );
