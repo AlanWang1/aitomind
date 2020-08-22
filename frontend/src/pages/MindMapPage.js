@@ -4,7 +4,8 @@ import Mindmap from "../components/Mindmap";
 import "./mindmap.css";
 import Video from "../components/Video";
 import axios from "axios";
-import MindMapFetch from "../components/MindMapFetch";
+import MindMapFetchForm from "../components/MindMapFetchForm";
+import MindMapUpdateForm from '../components/MindMapUpdateForm';
 
 export default class MindMapPage extends Component {
   constructor(props) {
@@ -58,61 +59,18 @@ export default class MindMapPage extends Component {
           <div className="columns is-centered" style={container}>
             <div className="column columns is-centered" style={videoArea}>
               {this.state.videoPath ? (
-                <Video url={this.state.videoPath} />
+                <div className="section">
+                   <Video url={this.state.videoPath} />
+                </div>
               ) : (
+        
                 <FileUpload onUpload={this.handleUpload} />
+               
               )}
             </div>
           </div>
-
-          <div className="columns">
-            <p className="column is-size-4 has-text-weight-bold">
-              {" "}
-              Add a Node{" "}
-            </p>
-          </div>
-
-          <form>
-            <div className="columns is-multiline ">
-              <div className="column is-6">
-                <label className="label has-text-weight-medium">Name</label>
-                <div className="control">
-                  <input
-                    className="input is-small "
-                    type="text"
-                    placeholder="Text input"
-                  />
-                </div>
-              </div>
-              <div className="column is-6">
-                <label className="label has-text-weight-medium">
-                  Connections
-                </label>
-                <div className="control">
-                  <input
-                    className="input is-small"
-                    type="text"
-                    placeholder="Text input"
-                  />
-                </div>
-              </div>
-              <div className="column">
-                <label className="label has-text-weight-medium">
-                  Connections
-                </label>
-                <div className="control">
-                  <input
-                    className="input is-small"
-                    type="text"
-                    placeholder="Text input"
-                  />
-                </div>
-              </div>
-            </div>
-            <button className="button is-primary is-pulled-right" type="submit">
-              Add
-            </button>
-          </form>
+        <MindMapUpdateForm  />
+      
         </div>
         <div className="column is-4 ">
           {(this.state.nodes.length !== 0 &&
@@ -122,7 +80,10 @@ export default class MindMapPage extends Component {
               connections={this.state.connections}
             />
           ) : (
-            <MindMapFetch onChange={this.handleFieldChange} onSubmit={this.handleMindMapFetch} />
+            <div>
+              <MindMapFetchForm onChange={this.handleFieldChange} onSubmit={this.handleMindMapFetch} />
+             
+            </div>
           )}
           
         </div>

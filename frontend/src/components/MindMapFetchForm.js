@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function MindMapFetch(props) {
+export default function MindMapFetchForm(props) {
     return (
         <div>
             <form onSubmit={props.onSubmit}>
@@ -16,6 +16,7 @@ export default function MindMapFetch(props) {
                 onChange={props.onChange}
               />
               <button
+                style={{marginTop: "2ch"}}
                 className="button is-primary is-pulled-right"
                 type="submit"
               >

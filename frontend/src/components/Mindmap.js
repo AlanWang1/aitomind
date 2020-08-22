@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import MindMap from "react-mindmap";
-import map from './map';
+
 
 export default class Mindmap extends Component {
   render() {

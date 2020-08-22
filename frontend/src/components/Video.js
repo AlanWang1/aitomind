@@ -6,7 +6,7 @@ export default class Video extends Component {
         return (
             <div>
                 {/*html video tag don't work for some reason */}
-                <ReactPlayer controls={true} url={this.props.url} width="500px" height="400px"/>
+                <ReactPlayer controls={true} url={this.props.url} width="60vw" height="48vh"/>
             </div>
         )
     }
