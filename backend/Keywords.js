@@ -1,3 +1,6 @@
+module.exports = function(input) {
+
+
 const fetch = require('node-fetch');
 const link = 'https://eastus.api.cognitive.microsoft.com/text/analytics/v3.0/keyPhrases'
 const headers = {
@@ -12,7 +15,7 @@ const body = (
           {
             language: "en",
             id: "1",
-            text: "Hello world. This is some input text that I love. shit fuck bitch blah blah microsfot thing SUCKS i hta this I AHTE president trump"
+            text: input
           }
         ]
       })
@@ -22,8 +25,9 @@ const body = (
 fetch(link, {method: 'POST', headers: headers, body: body})
             .then(response => response.json()) 
             .then(responseData => {
-            return console.log(responseData);
+            return console.log(responseData.documents);
             });
             
             
         
+};
