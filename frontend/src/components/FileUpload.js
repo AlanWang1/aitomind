@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from "react";
-import Progress from "./Progress";
 import axios from "axios";
 
 const FileUpload = (props) => {
@@ -37,8 +36,11 @@ const FileUpload = (props) => {
       });
 
       const { fileName, filePath } = res.data;
+      //should become const {fileName, filePath, nodes, connections}=res.data;
+
       //has to be before setState
       props.onUpload(filePath);
+      //function will have additional stuff for setting mind map state
       setUploadedFile({ fileName, filePath });
       setIsUploading(false);
     } catch (err) {
@@ -61,22 +63,22 @@ const FileUpload = (props) => {
                 <span className="file-icon">
                   <i className="fas fa-upload"></i>
                 </span>
-                <span className="file-label">Upload a File... </span>
+                <span className="file-label">Upload a Video... </span>
               </span>
               <span className="file-name"> {filename} </span>
             </label>
           </div>
         </div>
         <div className="columns is-centered" style={{ padding: "2ch 0ch" }}>
-          <button className="button is-primary" type="submit">
-            Upload
-          </button>
+          {isUploading ? (
+            <button className="button is-primary is-loading">Upload</button>
+          ) : (
+            <button className="button is-primary" type="submit">
+              Upload
+            </button>
+          )}
         </div>
       </form>
-      {isUploading ? 
-        <Progress percentage={uploadPercentage} /> 
-
-        : null}
     </div>
   );
 };

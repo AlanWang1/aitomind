@@ -23,6 +23,7 @@ export default class MindMapPage extends Component {
 
   handleUpload(path) {
     this.setState({ videoPath: path });
+    //set state nodes and connections from what was passed in (will have new parameters)
   }
 
   async handleMindMapFetch(e) {
