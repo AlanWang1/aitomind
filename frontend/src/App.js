@@ -1,9 +1,13 @@
 import React from 'react';
-import FileUpload from './components/FileUpload'
+import MindMapPage from './pages/MindMapPage';
+import NavBar from './components/NavBar'
+import '@fortawesome/fontawesome-free/css/all.css'
+import './App.scss'
 function App() {
   return (
     <div className="App">
-      App
+    <NavBar />
+    <MindMapPage/>
     </div>
   );
 }

@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "npm start --prefix backend",
+    "client": "npm start --prefix frontend",
+    "startup": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "npm run startup"
   },
   "repository": {
     "type": "git",
