@@ -20,6 +20,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "microsoft-cognitiveservices-speech-sdk": "^1.13.1",
     "mongoose": "^5.10.0",
+    "node-fetch": "^2.6.0",
     "nodemon": "^2.0.4",
     "shortid": "^2.2.15"
   }
