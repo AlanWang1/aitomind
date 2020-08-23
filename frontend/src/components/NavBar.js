@@ -8,7 +8,10 @@ export default function NavBar() {
   return (
     <nav className="navbar" style={style}>
       <nav className="navbar-brand">
-        <p className="is-size-3 has-text-weight-semibold"> Name</p>
+          <a className="navbar-item">
+            <img src="/img/Asset 1.png" width="30" height="50"></img>
+          </a>
+          <p className="navbar-item has-text-weight-bold">Aitomind</p>
       </nav>
       <div className="navbar-menu">
           <div className="navbar-end">

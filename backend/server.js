@@ -43,9 +43,9 @@ app.post('/upload', (req, res) => {
       console.error(err);
       return res.status(500).send(err);
     }
-    //videoprocess(`../frontend/public/uploads/${file.name}`);     //should start extracting video audio once file has been moved
+    videoprocess(`../frontend/public/uploads/${file.name}`,file.name, `/uploads/${file.name}`, res);     //should start extracting video audio once file has been moved
   // transcribe(`path.join('./files/'), path.basename(${file.name}, path.extname(${file.name})) + ".wav"`);
-    setTimeout(function(){res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });},10000);
+    //setTimeout(function(){res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });},10000);
     
     //transcribe(`../frontend/public/uploads/${file.name}`);
 
