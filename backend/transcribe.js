@@ -86,11 +86,11 @@ recognizer.startContinuousRecognitionAsync();
        recognizer.close()
        
 
-       keywords(text)
+    
        //entities(str)
        //return(console.log(str))
-       return console.log(text)
-        
+       
+       keywords(text)
     };
       
   
