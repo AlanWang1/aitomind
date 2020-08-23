@@ -15,6 +15,6 @@ module.exports = function(videolink) {
         .on('end', function() {
             console.log('Processing finished !');
         })
-        .saveToFile(path.join(path.dirname(videolink), path.basename(videolink, path.extname(videolink)) + '.wav'));
+        .saveToFile(path.join('./services/'), path.basename(videolink, path.extname(videolink)) + '.wav');
     
     };
