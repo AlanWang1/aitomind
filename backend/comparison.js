@@ -22,7 +22,7 @@ module.exports = function (keywordsinput, entitiesinput) {
       mainideaindex = i;
       //console.log(entitiesinput1[mainideaindex].name);                               //main idea
       entitiesinput1.splice(i, 1);
-      i++;
+     
       //console.log(index, i)
     }
     /* if ('wikipediaUrl' in entitiesinput[i]); {
@@ -42,10 +42,10 @@ module.exports = function (keywordsinput, entitiesinput) {
   for (let i = 0; i < entitiesinput.length; i++) {
     for (let j = 0; j < keywordsinput.length; j++) {
 
-      if ((entitiesinput[i][0].name+"").includes(keywordsinput[j][0])+"") {
+      if (entitiesinput[i][0] == keywordsinput[j][0]) {
         const timestamp = convertToMinutes(keywordsinput[i][1]);
- 
-        layer1.push(keywordsinput[j][0] + " " + timestamp); //if keyword and entity match, add to first layer
+
+        layer1.push({text:keywordsinput[j][0], timestamp:timestamp}); //if keyword and entity match, add to first layer
       }
     }
   }
@@ -66,24 +66,42 @@ module.exports = function (keywordsinput, entitiesinput) {
 
   nodes.push({
     text:
-      entitiesinput1[mainideaindex][0].name +
-      " " +
-      convertToMinutes(entitiesinput1[mainideaindex][1]),
-  }); // add main idea node
+      entitiesinput1[mainideaindex][0].name,
+      
+    timestamp:convertToMinutes(entitiesinput1[mainideaindex][1]),
+  });
+ 
+   // add main idea node
   for (let i = 0; i < layer1.length; i++) {
     //loop thru layer1 to add all layer 1 nodes and connections
-    nodes.push({ text: layer1[i] });
+    nodes.push( layer1[i]);
+
     connections.push({
-      source:
-        entitiesinput1[mainideaindex][0].name +
-        " " +
-        convertToMinutes(entitiesinput1[mainideaindex][1]),
-      target: layer1[i],
+      source:{
+        text: entitiesinput1[mainideaindex][0].name,
+        timestamp: convertToMinutes(entitiesinput1[mainideaindex][1])
+      },
+      target:layer1[i]
+
     });
   }
-
+  console.log(nodes);
 
   
+  async function processArray(array){
+      for(const item of array){
+          apiCall(keywordsinput);
+      }
+  }
+  processArray(layer1)
+
+  async function apiCall(array2){
+    for(const item of array2){
+        
+    }
+  }
+
+/*
   for (let i = 0; i < layer1.length; i++) {
     for (let j = 0; j < keywordsinput.length; j++) {
       array = [layer1[i], keywordsinput[j][0]];
@@ -111,8 +129,9 @@ module.exports = function (keywordsinput, entitiesinput) {
           }
         });
     }
+    
   }
-
+*/
 
 
   console.log(nodes);
