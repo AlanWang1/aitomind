@@ -10,8 +10,8 @@ module.exports = function (keywordsinput, entitiesinput) {
     //const mindmap = mongoose.model('mindmaps', mindmapSchema, 'mindmaps')
     const link = 'http://cf6d83ff-aa1b-4794-b9bb-b008f94831d8.canadacentral.azurecontainer.io/score'
 
-    //console.log(entitiesinput)
-    //console.log(keywordsinput);
+    console.log(entitiesinput)
+    console.log(keywordsinput);
     var index = 0;
     entitiesinput1 = entitiesinput;
     layer1 = [];
@@ -38,6 +38,11 @@ module.exports = function (keywordsinput, entitiesinput) {
             if (entitiesinput[i][0].name == keywordsinput[j][0]) {
                 layer1.push(keywordsinput[j][0]); //if keyword and entity match, add to first layer
             }
+            
+        }
+        if (entitiesinput[i][0].hasOwnProperty('wikipediaUrl') || entitiesinput[i][0].matches.length > 2) {
+            layer1.push(entitiesinput[i][0].name)
+            
         }
     }
 
@@ -76,7 +81,7 @@ module.exports = function (keywordsinput, entitiesinput) {
                 .then(responseData => {
                     str = responseData.slice(1, -1)
                     res = parseFloat(str)
-                    if (1.0 > res > 0.50) {
+                    if (0.99 > res > 0.30) {
                         //append node and connection
                         nodes.push({ text: keywordsinput[j][0] });
                         connections.push({ source: layer1[i], target: keywordsinput[j][0] });
