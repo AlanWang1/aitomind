@@ -4,6 +4,7 @@ module.exports = function(keywordsinput, entitiesinput) {
 const keywords = require('./keywords.js');
 const entities = require('./entities.js');
 const similarity = require('./similarity.js');
+const fetch = require('node-fetch');
 const mongoose = require('mongoose');
 const mindmapSchema = require('./models/mindmap.model.js')
 const mindmap = mongoose.model('mindmaps', mindmapSchema, 'mindmaps')
@@ -41,7 +42,7 @@ for (let i = 0; i < entitiesinput.length; i++) {
 console.log(layer1)  //1st layer
 
 
-
+const 
 
 
 
@@ -50,7 +51,6 @@ console.log(layer1)  //1st layer
 
 
 //proof of concept code to search api
- */
 
 
 };

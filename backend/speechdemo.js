@@ -6,4 +6,5 @@ const file3 = "audio1.wav"
 const file4 = "Lec1AbsoluteValue.wav"
 const file5 = "Lec1.wav"
 const file6 = "test.wav"
-transcribe(`./services/${file2}`); //will take a while to get results
+const file7 = "functionalgroups.wav"
+transcribe(`./services/${file7}`); //will take a while to get results

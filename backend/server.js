@@ -2,8 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const fileUpload = require('express-fileupload');
+const processvideo = require('./videoprocess');
 require("dotenv").config();
 const path = require('path');
+const videoprocess = require("./videoprocess");
 //require transcribe
 
 // set up express and middleware
@@ -40,7 +42,8 @@ app.post('/upload', (req, res) => {
       console.error(err);
       return res.status(500).send(err);
     }
-
+    videoprocess(`../frontend/public/uploads/${file.name}`);     //should start extracting video audio once file has been moved
+  // transcribe(`path.join('./services/'), path.basename(${file.name}, path.extname(${file.name})) + ".wav"`);
     res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
     //transcribe(`../frontend/public/uploads/${file.name}`);
   });
