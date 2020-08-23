@@ -38,7 +38,7 @@ for (let i = 0; i < entitiesinput.length; i++) {
                 layer1.push(keywordsinput[j])  //if keyword and entity match, add to first layer
         }
     }
-    };
+};
 console.log(layer1)  //1st layer
 
 

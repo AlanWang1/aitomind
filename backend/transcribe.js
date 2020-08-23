@@ -6,7 +6,7 @@ module.exports = function(path) {
     // pull in the required packages.
     var sdk = require("microsoft-cognitiveservices-speech-sdk");
     var fs = require("fs");
-    var str = ""
+    var text=[];
     // replace with your own subscription key,
     // service region (e.g., "westus"), and
     // the name of the file you want to run
@@ -58,7 +58,7 @@ module.exports = function(path) {
     }; */
 recognizer.startContinuousRecognitionAsync();
     recognizer.recognized = (s, e) => {
-      str += e.result.text //Displays final recognized text
+      text.push([e.result.text, e.result.offset]);//Displays final recognized text
         /* if (e.result.reason == ResultReason.RecognizedSpeech) {
             console.log(`RECOGNIZED: Text=${e.result.text}`); // Final 
         }
@@ -86,10 +86,10 @@ recognizer.startContinuousRecognitionAsync();
        recognizer.close()
        
 
-keywords(str)
+       keywords(text)
        //entities(str)
        //return(console.log(str))
-       return console.log(str)
+       return console.log(text)
         
     };
       
