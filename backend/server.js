@@ -44,7 +44,7 @@ app.post('/upload', (req, res) => {
       return res.status(500).send(err);
     }
     videoprocess(`../frontend/public/uploads/${file.name}`);     //should start extracting video audio once file has been moved
-  // transcribe(`path.join('./services/'), path.basename(${file.name}, path.extname(${file.name})) + ".wav"`);
+  // transcribe(`path.join('./files/'), path.basename(${file.name}, path.extname(${file.name})) + ".wav"`);
     res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
     //transcribe(`../frontend/public/uploads/${file.name}`);
 
