@@ -1,4 +1,4 @@
-module.exports = function (input) {
+module.exports = function (input, fileName, filepath, firstResponse) {
   const fetch = require("node-fetch");
   const compare = require("./comparison");
   const keywordslink =
@@ -45,19 +45,24 @@ module.exports = function (input) {
         }
       }
 
+     
+    }).then(()=>{
       fetch(keywordslink, { method: "POST", headers: headers, body: body })
-        .then((res) => res.json())
-        .then((resData) => {
-          for (let i = 0; i < resData.documents[0].keyPhrases.length; i++) {
-            const keyPhrase = resData.documents[0].keyPhrases[i];
+      .then((res1) => res1.json())
+      .then((resData) => {
 
-            for (let j = 0; j < input.length; j++) {
-              if (input[j][0].includes(keyPhrase)) {
-                keywordsinput.push([keyPhrase, input[j][1]]);
-              }
+     
+
+        for (let i = 0; i < resData.documents[0].keyPhrases.length; i++) {
+          const keyPhrase = resData.documents[0].keyPhrases[i];
+
+          for (let j = 0; j < input.length; j++) {
+            if (input[j][0].includes(keyPhrase)) {
+              keywordsinput.push([keyPhrase, input[j][1]]);
             }
           }
-          compare(keywordsinput, entitiesinput);
-        });
-    });
+        }
+        compare(keywordsinput, entitiesinput,  fileName, filepath, firstResponse);
+      });
+    })
 };

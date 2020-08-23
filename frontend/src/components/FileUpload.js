@@ -36,20 +36,18 @@ const FileUpload = (props) => {
         },
       });
 
-      const { fileName, filePath } = res.data;
+      const { fileName, filePath ,nodes, connections} = res.data;
       //should become const {fileName, filePath, nodes, connections}=res.data;
-
+      console.log(res.data);
       //has to be before setState
-      props.onUpload(filePath);
+      props.onUpload(filePath, nodes, connections);
       //function will have additional stuff for setting mind map state
       setUploadedFile({ fileName, filePath });
       setIsUploading(false);
     } catch (err) {
-      if (err.response.status === 500) {
+    
         console.log(err);
-      } else {
-        console.log(err);
-      }
+      
     }
   };
 

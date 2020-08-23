@@ -1,4 +1,4 @@
-module.exports = function(path) {
+module.exports = function(path, responseFileName, filepath, firstResponse) {
   const keywords = require('./keywords.js')
   const entities = require('./entities.js') 
     //"use strict";
@@ -88,9 +88,10 @@ recognizer.startContinuousRecognitionAsync();
 
     
        //entities(str)
-       //return(console.log(str))
-       
-       keywords(text)
+ 
+       console.log(text);
+       keywords(text, responseFileName, filepath,firstResponse);
+
     };
       
   

@@ -17,12 +17,10 @@ export default class MindMapPage extends Component {
     this.handleUpload = this.handleUpload.bind(this);
     this.handleMindMapFetch = this.handleMindMapFetch.bind(this);
     this.handleFetchFieldChange = this.handleFetchFieldChange.bind(this);
-    this.handleMindMapUpdate = this.handleMindMapUpdate.bind(this);
   }
 
-  handleUpload(path) {
-    this.setState({ videoPath: path });
-    //set state nodes and connections from what was passed in (will have new parameters)
+  handleUpload(path, nodes, connections) {
+    this.setState({ videoPath: path, nodes:nodes, connections:connections });
   }
 
   async handleMindMapFetch(e) {
@@ -44,7 +42,6 @@ export default class MindMapPage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
   //unused because no mindmap updating
-  handleMindMapUpdate(node, connections) {}
 
   render() {
     const container = {
@@ -58,7 +55,6 @@ export default class MindMapPage extends Component {
     const mindMap = {
       textAlign: "center",
       display: "flex",
-
     };
     return (
       <div
@@ -67,7 +63,6 @@ export default class MindMapPage extends Component {
       >
         <div className="column is-8">
           <div className="columns is-centered" style={container}>
-        
             <div className="columns is-centered" style={videoArea}>
               {this.state.videoPath ? (
                 <div className="column">
@@ -84,12 +79,9 @@ export default class MindMapPage extends Component {
           {/*have to import if want to use again */}
         </div>
         <div className="is-divider-vertical"></div>
-       
+
         <div className="column is-4 columns is-centered" style={mindMap}>
-       
-           
-          {this.state.nodes.length !== 0 &&
-          this.state.connections.length !== 0 ? (
+          {this.state.nodes.length!==0 || this.state.connections.length!==0? (
             <Mindmap
               nodes={this.state.nodes}
               connections={this.state.connections}

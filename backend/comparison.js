@@ -1,6 +1,7 @@
 const { ConsoleLoggingListener } = require('microsoft-cognitiveservices-speech-sdk/distrib/lib/src/common.browser/Exports');
 
-module.exports = function (keywordsinput, entitiesinput) {
+
+module.exports = function (keywordsinput, entitiesinput,  filename, filepath, firstResponse) {
     const keywords = require('./keywords.js');
     const entities = require('./entities.js');
     //const similarity = require('./similarity.js');
@@ -53,8 +54,8 @@ module.exports = function (keywordsinput, entitiesinput) {
     //append layer 1 nodes, connections
     //append layer 2 nodes, connections
 
-    nodes = [];
-    connections = [];
+    let nodes = [];
+    let connections = [];
 
     nodes.push({ text: entitiesinput1[mainideaindex][0].name }); // add main idea node
     for (let i = 0; i < layer1.length; i++) {
@@ -88,10 +89,9 @@ module.exports = function (keywordsinput, entitiesinput) {
                 )
         }
     };
-
-    console.log(nodes);
-    console.log(connections);
-
+ 
+   firstResponse.json({ fileName: filename, filePath: `/uploads/${filename}`, nodes:nodes, connections:connections })
+   
 
 
 
