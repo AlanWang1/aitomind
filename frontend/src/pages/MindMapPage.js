@@ -4,7 +4,6 @@ import Mindmap from "../components/Mindmap";
 import "./mindmap.css";
 import Video from "../components/Video";
 import axios from "axios";
-import "bulma-divider/dist/css/bulma-divider.min.css";
 
 export default class MindMapPage extends Component {
   constructor(props) {
@@ -59,6 +58,7 @@ export default class MindMapPage extends Component {
     const mindMap = {
       textAlign: "center",
       display: "flex",
+
     };
     return (
       <div
@@ -67,10 +67,8 @@ export default class MindMapPage extends Component {
       >
         <div className="column is-8">
           <div className="columns is-centered" style={container}>
+        
             <div className="columns is-centered" style={videoArea}>
-              <div className="columns"> 
-                  <p className="column"> Video </p>
-              </div>
               {this.state.videoPath ? (
                 <div className="column">
                   <Video url={this.state.videoPath} />
@@ -85,8 +83,11 @@ export default class MindMapPage extends Component {
           {/* <MindMapUpdateForm onUpdate={this.handleMindMapUpdate} />*/}
           {/*have to import if want to use again */}
         </div>
-        <div class="is-divider-vertical"></div>
+        <div className="is-divider-vertical"></div>
+       
         <div className="column is-4 columns is-centered" style={mindMap}>
+       
+           
           {this.state.nodes.length !== 0 &&
           this.state.connections.length !== 0 ? (
             <Mindmap
@@ -110,10 +111,7 @@ export default class MindMapPage extends Component {
                 className="column"
               ></img>
               <div className="columns">
-                <p className=" column is-size-5">
-                  {" "}
-                  Your Mindmap will Appear Here
-                </p>
+                <p className=" column"> Your Mindmap will Appear Here</p>
               </div>
             </div>
           )}

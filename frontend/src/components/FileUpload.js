@@ -57,7 +57,7 @@ const FileUpload = (props) => {
     <div>
       <form onSubmit={onSubmit}>
         <div className="columns">
-          <div className="file has-name is-boxed">
+          <div className="file has-name is-boxed is-large">
             <label className="file-label">
               <input className="file-input" type="file" onChange={onChange} />
               <span className="file-cta">

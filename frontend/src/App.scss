@@ -32,7 +32,10 @@ $body-background-color: $light-grey;
 $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
+$divider-background-color:rgb(200, 199, 199);
+
 
 // Import only what you need from Bulma
 
 @import "../node_modules/bulma/bulma.sass";
+@import "../node_modules/bulma-divider/dist/css/bulma-divider.sass"
