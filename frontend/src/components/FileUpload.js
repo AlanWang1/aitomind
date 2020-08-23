@@ -71,21 +71,47 @@ const FileUpload = (props) => {
           </div>
         </div>
 
-        <div className="columns is-centered" style={{ padding: "2ch 0ch" }}>
-          {/*isUploading ? (
-            <button className="button is-primary is-loading">Upload</button>
-          ) : (
-            <button className="button is-primary" type="submit">
-              Upload
-            </button>
-          )*/}
-          <button className="button is-primary" type="submit">
-            Upload
-          </button>
-        </div>
+        {isUploading ? (
+          <div
+            className="columns"
+            style={{
+              padding: "2ch 0ch",
+            }}
+          >
+            {" "}
+            <div
+              className="column"
+              style={{
+                textAlign: "center",
+              }}
+            >
+              <button className="button is-primary is-loading">Upload</button>
+              <p>Processing Your Video...</p>
+            </div>
+          </div>
+        ) : (
+          <div
+            className="columns"
+            style={{
+              padding: "2ch 0ch",
+            }}
+          >
+            {" "}
+            <div
+              className="column"
+              style={{
+                textAlign: "center",
+              }}
+            >
+              <button className="button is-primary" type="submit">
+                Upload
+              </button>
+            </div>
+          </div>
+        )}
       </form>
 
-      {isUploading ? (
+      {/*isUploading ? (
         <div className="columns">
           {" "}
           <div className="column" style={
@@ -97,7 +123,7 @@ const FileUpload = (props) => {
             <p>Processing Your Video...</p>
           </div>
         </div>
-      ) : null}
+      ) : null */}
     </div>
   );
 };

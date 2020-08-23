@@ -39,7 +39,7 @@ module.exports = function (input) {
         for (let j = 0; j < input.length; j++) {
          
           if (input[j][0].includes(entity.name)) {
-            entitiesinput.push([entity.name, input[j][1]]);
+            entitiesinput.push([entity, input[j][1]]);
             break;
           }
         }
