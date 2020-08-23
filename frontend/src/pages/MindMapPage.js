@@ -68,6 +68,9 @@ export default class MindMapPage extends Component {
         <div className="column is-8">
           <div className="columns is-centered" style={container}>
             <div className="columns is-centered" style={videoArea}>
+              <div className="columns"> 
+                  <p className="column"> Video </p>
+              </div>
               {this.state.videoPath ? (
                 <div className="column">
                   <Video url={this.state.videoPath} />
