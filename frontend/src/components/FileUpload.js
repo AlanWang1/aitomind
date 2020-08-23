@@ -88,8 +88,13 @@ const FileUpload = (props) => {
       {isUploading ? (
         <div className="columns">
           {" "}
-          <div className="column">
+          <div className="column" style={
+            {
+              textAlign:"center"
+            }
+          }>
             <Progress percentage={uploadPercentage} />
+            <p>Processing Your Video...</p>
           </div>
         </div>
       ) : null}
