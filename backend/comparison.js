@@ -49,16 +49,42 @@ const headers = {
     'Content-Type': 'application/json',
     'Accept': '*/*'
 }
-const body = JSON.stringify({'data': array });
- 
-    
 
+
+//append main idea node
+//append layer 1 nodes, connections
+//append layer 2 nodes, connections
+
+nodes = [];
+connections = [];
+
+nodes.push({text: entitiesinput1[mainideaindex].name}) // add main idea node
+for (let i = 0; i < layer1.length; i++) {  //loop thru layer1 to add all layer 1 nodes and connections
+    nodes.push({text: layer1[i]});
+    connections.push({source: entitiesinput1[mainideaindex].name, target: layer1[i]});
+}
+
+for (let i = 0; i < layer1.length; i++) {
+    for (let j = 0; j < keywordsinput.length; j++) {
+    
+    array = [layer1[i], keywordsinput[j]];
+var body = JSON.stringify({'data': array });  // change array
 fetch(link, {method: 'POST', headers: headers, body: body})
 .then(response => response.text())
 .then(responseData => {
-console.log(responseData)
+str = responseData
+res = parseFloat(str.slice(3.-3))
+if (res > 0.50) {
+    //append node and connection
+    nodes.push({text: keywordsinput[j]});
+    connections.push({source: layer1[i], target: keywordsinput[j]});
+    console.log(nodes);
+    console.log(connections);
+}
 
-});
+}
+
+)}};
 
 
 
