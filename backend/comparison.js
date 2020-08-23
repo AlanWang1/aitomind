@@ -8,6 +8,8 @@ const fetch = require('node-fetch');
 const mongoose = require('mongoose');
 const mindmapSchema = require('./models/mindmap.model.js')
 const mindmap = mongoose.model('mindmaps', mindmapSchema, 'mindmaps')
+const link = 'http://d4054ef2-cb3f-4871-84f8-05f7f5fa6158.canadacentral.azurecontainer.io/score'
+
 console.log(entitiesinput)
 console.log(keywordsinput);
 var index = 0;
@@ -30,7 +32,6 @@ for (let i = 0; i < entitiesinput1.length; i++) {
     } */
     
 };
-console.log("MAIN IDEA", entitiesinput1[mainideaindex].name);
 
 for (let i = 0; i < entitiesinput.length; i++) {
     for (let j = 0; j < keywordsinput.length; j++) {
@@ -38,11 +39,26 @@ for (let i = 0; i < entitiesinput.length; i++) {
                 layer1.push(keywordsinput[j])  //if keyword and entity match, add to first layer
         }
     }
-};
+    };
+
+console.log("MAIN IDEA", entitiesinput1[mainideaindex].name);
 console.log(layer1)  //1st layer
 
 
-const 
+const headers = {
+    'Content-Type': 'application/json',
+    'Accept': '*/*'
+}
+const body = JSON.stringify({'data': array });
+ 
+    
+
+fetch(link, {method: 'POST', headers: headers, body: body})
+.then(response => response.text())
+.then(responseData => {
+console.log(responseData)
+
+});
 
 
 
