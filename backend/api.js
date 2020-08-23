@@ -1,7 +1,7 @@
 
 
 const fetch = require('node-fetch');
-const link = 'http://d4054ef2-cb3f-4871-84f8-05f7f5fa6158.canadacentral.azurecontainer.io/score'
+const link = 'http://cf6d83ff-aa1b-4794-b9bb-b008f94831d8.canadacentral.azurecontainer.io/score'
 
 layer1 = ["ether", "hydrocarbon", "carboxyl", "atom"];
 keyphrases = ["distillation", "valence", "electron", "alcohol", "organic molecule"];
@@ -17,20 +17,29 @@ for (let i = 0; i < layer1.length; i++) {
     for (let j = 0; j < keyphrases.length; j++) {
     
     array = [layer1[i], keyphrases[j]];
-var body = JSON.stringify({'data': array });  // change array
+    //console.log(array);
+var body = JSON.stringify({data: array });  // change array
+//console.log(body);
 fetch(link, {method: 'POST', headers: headers, body: body})
-.then(response => response.text())
+.then(response => response.json())
 .then(responseData => {
-str = responseData
-res = parseFloat(str.slice(3.-3))
+str = responseData.slice(1,-1)
+//console.log(str);
+//str1 = str.slice(1,-1)
+res = parseFloat(str)
+console.log(res)
 if (res > 0.50) {
     //append node and connection
     nodes.push({text: keyphrases[j]})
     connections.push({source: layer1[i], target: keyphrases[j]})
-    console.log(nodes)
-    console.log(connections)
+    
+}
+console.log(nodes);
+console.log(connections);
 }
 
-}
+)
 
-)}};
+}};
+
+

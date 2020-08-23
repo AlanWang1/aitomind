@@ -68,12 +68,12 @@ for (let i = 0; i < layer1.length; i++) {
     for (let j = 0; j < keywordsinput.length; j++) {
     
     array = [layer1[i], keywordsinput[j]];
-var body = JSON.stringify({'data': array });  // change array
+var body = JSON.stringify({data: array });  // change array
 fetch(link, {method: 'POST', headers: headers, body: body})
-.then(response => response.text())
+.then(response => response.json())
 .then(responseData => {
-str = responseData
-res = parseFloat(str.slice(3.-3))
+str = responseData.slice(1,-1)
+res = parseFloat(str)
 if ( 1.0 > res > 0.50) {
     //append node and connection
     nodes.push({text: keywordsinput[j]});
