@@ -34,12 +34,13 @@ if (res > 0.50) {
     connections.push({source: layer1[i], target: keyphrases[j]})
     
 }
-console.log(nodes);
-console.log(connections);
+
 }
 
 )
 
 }};
+console.log(nodes);
+console.log(connections);
 
 
