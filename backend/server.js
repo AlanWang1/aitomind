@@ -6,6 +6,7 @@ const processvideo = require('./videoprocess');
 require("dotenv").config();
 const path = require('path');
 const videoprocess = require("./videoprocess");
+
 //require transcribe
 
 // set up express and middleware
@@ -46,6 +47,7 @@ app.post('/upload', (req, res) => {
   // transcribe(`path.join('./services/'), path.basename(${file.name}, path.extname(${file.name})) + ".wav"`);
     res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
     //transcribe(`../frontend/public/uploads/${file.name}`);
+
   });
 
 
