@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const MindMap = require("../models/mindmap.model");
-const Test = require('./test');
+
 
 // Get all Mindmaps
 router.get("/mindmaps", async (req, res) => {
