@@ -20,7 +20,20 @@ export default class MindMapPage extends Component {
   }
 
   handleUpload(path, nodes, connections) {
-    this.setState({ videoPath: path, nodes:nodes, connections:connections });
+    let newNodes = [];
+    let newConnections = [];
+    for (let i = 0; i < nodes.length; i++) {
+      newNodes[i] = {
+        text: nodes[i].text + " " + nodes[i].timestamp,
+      };
+    }
+    for (let i = 0; i < connections.length; i++) {
+      newConnections[i] = {
+        source: connections[i].source + " " + connections[i].sourceTimeStamp,
+        target: connections[i].target + " " + connections[i].targetTimeStamp
+      };
+    }
+    this.setState({ videoPath: path, nodes: newNodes, connections: newConnections });
   }
 
   async handleMindMapFetch(e) {
@@ -81,7 +94,8 @@ export default class MindMapPage extends Component {
         <div className="is-divider-vertical"></div>
 
         <div className="column is-4 columns is-centered" style={mindMap}>
-          {this.state.nodes.length!==0 || this.state.connections.length!==0? (
+          {this.state.nodes.length !== 0 ||
+          this.state.connections.length !== 0 ? (
             <Mindmap
               nodes={this.state.nodes}
               connections={this.state.connections}

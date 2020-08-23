@@ -89,7 +89,7 @@ recognizer.startContinuousRecognitionAsync();
     
        //entities(str)
  
-       console.log(text);
+     
        keywords(text, responseFileName, filepath,firstResponse);
 
     };

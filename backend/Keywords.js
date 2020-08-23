@@ -62,7 +62,10 @@ module.exports = function (input, fileName, filepath, firstResponse) {
             }
           }
         }
+       
         compare(keywordsinput, entitiesinput,  fileName, filepath, firstResponse);
       });
-    })
+    });
+
+    
 };
