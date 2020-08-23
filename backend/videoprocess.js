@@ -1,5 +1,7 @@
-module.exports = function(videolink) {
 
+
+module.exports = function(videolink) {
+    const transcribe = require('./transcribe');
     const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
     const FFmpeg = require('fluent-ffmpeg');
     FFmpeg.setFfmpegPath(ffmpegPath);
@@ -16,5 +18,5 @@ module.exports = function(videolink) {
             console.log('Processing finished !');
         })
         .saveToFile(path.join('./files/'), path.basename(videolink, path.extname(videolink)) + '.wav');
-    
+        transcribe(path.join('./files/'), path.basename(videolink, path.extname(videolink)) + '.wav');
     };
