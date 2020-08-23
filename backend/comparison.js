@@ -8,7 +8,7 @@ const fetch = require('node-fetch');
 const mongoose = require('mongoose');
 const mindmapSchema = require('./models/mindmap.model.js')
 const mindmap = mongoose.model('mindmaps', mindmapSchema, 'mindmaps')
-const link = 'http://d4054ef2-cb3f-4871-84f8-05f7f5fa6158.canadacentral.azurecontainer.io/score'
+const link = 'http://cf6d83ff-aa1b-4794-b9bb-b008f94831d8.canadacentral.azurecontainer.io/score'
 
 console.log(entitiesinput)
 console.log(keywordsinput);
@@ -74,12 +74,13 @@ fetch(link, {method: 'POST', headers: headers, body: body})
 .then(responseData => {
 str = responseData
 res = parseFloat(str.slice(3.-3))
-if (res > 0.50) {
+if ( 1.0 > res > 0.50) {
     //append node and connection
     nodes.push({text: keywordsinput[j]});
     connections.push({source: layer1[i], target: keywordsinput[j]});
     console.log(nodes);
     console.log(connections);
+
 }
 
 }
