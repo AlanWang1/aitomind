@@ -1,14 +1,17 @@
-.mindmap-svg{
-    height:89vh;
+.mindmap-svg {
+  height: 89vh;
 }
-button{
-    box-shadow: 10px 10px 5px grey ;
+button {
+  box-shadow: 10px 10px 5px grey;
 }
 progress[value]::-webkit-progress-value {
-    background-image:
-    linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(249,150,81,1) 0%, rgba(247,39,88,1) 42%);
- 
+  background-image: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(249, 150, 81, 1) 0%,
+    rgba(247, 39, 88, 1) 42%
+  );
 }
-progress{
-    background:white;
+progress {
+  background: white;
 }
