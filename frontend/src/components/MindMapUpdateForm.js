@@ -3,24 +3,23 @@ import React, { Component } from "react";
 export default class MindMapUpdateForm extends Component {
   constructor(props) {
     super(props);
-    this.state={
-        name:'',
-        timestamp:'',
-        connections: '',
-    }
+    this.state = {
+      name: "",
+      timestamp: "",
+      connections: "",
+    };
     this.updateChange = this.updateChange.bind(this);
   }
 
-  updateChange(e){
-      this.setState({[e.target.name]:e.target.value})
+  updateChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
-  sendUpdate(e){
-    const node={
-        text:`${this.state.name} ${this.state.timestamp}`
-    }
-    const outbound=this.state.connections.split(", ");
-    const connections =[]
-
+  sendUpdate(e) {
+    const node = {
+      text: `${this.state.name} ${this.state.timestamp}`,
+    };
+    const outbound = this.state.connections.split(", ");
+    const connections = [];
   }
   render() {
     return (
@@ -47,8 +46,8 @@ export default class MindMapUpdateForm extends Component {
               <label className="label has-text-weight-medium">Timestamp</label>
               <div className="control">
                 <input
-                  className="input is-small" 
-                  type="text" 
+                  className="input is-small"
+                  type="text"
                   name="timestamp"
                   onChange={this.updateChange}
                 />
@@ -60,8 +59,8 @@ export default class MindMapUpdateForm extends Component {
                 Connections
               </label>
               <div className="control">
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   className="input is-small"
                   name="connections"
                   onChange={this.updateChange}

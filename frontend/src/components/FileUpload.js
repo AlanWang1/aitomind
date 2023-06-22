@@ -36,7 +36,7 @@ const FileUpload = (props) => {
         },
       });
 
-      const { fileName, filePath ,nodes, connections} = res.data;
+      const { fileName, filePath, nodes, connections } = res.data;
       //should become const {fileName, filePath, nodes, connections}=res.data;
       console.log(res.data);
       //has to be before setState
@@ -45,9 +45,7 @@ const FileUpload = (props) => {
       setUploadedFile({ fileName, filePath });
       setIsUploading(false);
     } catch (err) {
-    
-        console.log(err);
-      
+      console.log(err);
     }
   };
 
