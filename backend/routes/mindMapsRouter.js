@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const MindMap = require("../models/mindmap.model");
 
-
 // Get all Mindmaps
 router.get("/mindmaps", async (req, res) => {
   try {
@@ -18,7 +17,7 @@ router.post("/mindmaps/add", async (req, res) => {
   const connections = req.body.connections;
   const newMindMap = new MindMap({
     nodes,
-    connections, 
+    connections,
   });
   try {
     await newMindMap.save();

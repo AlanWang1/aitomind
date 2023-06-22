@@ -37,35 +37,34 @@ module.exports = function (input, fileName, filepath, firstResponse) {
         const entity = responseData.documents[0].entities[i];
 
         for (let j = 0; j < input.length; j++) {
-         
           if (input[j][0].includes(entity.name)) {
             entitiesinput.push([entity, input[j][1]]);
             break;
           }
         }
       }
-
-     
-    }).then(()=>{
+    })
+    .then(() => {
       fetch(keywordslink, { method: "POST", headers: headers, body: body })
-      .then((res1) => res1.json())
-      .then((resData) => {
+        .then((res1) => res1.json())
+        .then((resData) => {
+          for (let i = 0; i < resData.documents[0].keyPhrases.length; i++) {
+            const keyPhrase = resData.documents[0].keyPhrases[i];
 
-     
-
-        for (let i = 0; i < resData.documents[0].keyPhrases.length; i++) {
-          const keyPhrase = resData.documents[0].keyPhrases[i];
-
-          for (let j = 0; j < input.length; j++) {
-            if (input[j][0].includes(keyPhrase)) {
-              keywordsinput.push([keyPhrase, input[j][1]]);
+            for (let j = 0; j < input.length; j++) {
+              if (input[j][0].includes(keyPhrase)) {
+                keywordsinput.push([keyPhrase, input[j][1]]);
+              }
             }
           }
-        }
-       
-        compare(keywordsinput, entitiesinput,  fileName, filepath, firstResponse);
-      });
-    });
 
-    
+          compare(
+            keywordsinput,
+            entitiesinput,
+            fileName,
+            filepath,
+            firstResponse
+          );
+        });
+    });
 };

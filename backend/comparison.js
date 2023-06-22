@@ -23,8 +23,8 @@ module.exports = function (
   //console.log(keywordsinput);
   var index = 0;
   let entitiesinput1 = entitiesinput;
-  let layer1 = []
-  
+  let layer1 = [];
+
   //proof of concept code to get longest entity array
   for (let i = 0; i < entitiesinput1.length; i++) {
     if (entitiesinput1[i][0].matches.length > index) {
@@ -41,14 +41,12 @@ module.exports = function (
             entitiesinput1.splice(i, 1)
         } */
   }
-  
 
-  
   const convertTimeStamps = (nanoseconds) => {
     let seconds = Math.floor(nanoseconds / 10000000);
     let minutes = Math.floor(seconds / 60);
     let remainderSeconds = seconds - minutes * 60;
-    return "("+minutes + ":" + remainderSeconds+")";
+    return "(" + minutes + ":" + remainderSeconds + ")";
   };
 
   for (let i = 0; i < entitiesinput.length; i++) {
@@ -62,13 +60,9 @@ module.exports = function (
       }
     }
   }
- 
-  
 
-  
   console.log("MAIN IDEA", entitiesinput1[mainideaindex][0].name);
   console.log("layer1", layer1); //1st layer
-  
 
   const headers = {
     "Content-Type": "application/json",
@@ -78,7 +72,7 @@ module.exports = function (
   //append main idea node
   //append layer 1 nodes, connections
   //append layer 2 nodes, connections
-  
+
   let nodes = [];
   let connections = [];
 
@@ -88,19 +82,17 @@ module.exports = function (
   }); // add main idea node
   for (let i = 0; i < layer1.length; i++) {
     //loop thru layer1 to add all layer 1 nodes and connections
-    nodes.push({ text: layer1[i].text, timestamp: layer1[i].timestamp});
+    nodes.push({ text: layer1[i].text, timestamp: layer1[i].timestamp });
     connections.push({
       source: entitiesinput1[mainideaindex][0].name,
       sourceTimeStamp: convertTimeStamps(entitiesinput1[mainideaindex][1]),
       target: layer1[i].text,
-      targetTimeStamp: layer1[i].timestamp
+      targetTimeStamp: layer1[i].timestamp,
     });
   }
 
-
   for (let i = 0; i < layer1.length; i++) {
     for (let j = 0; j < keywordsinput.length; j++) {
-
       array = [layer1[i].text, keywordsinput[j][0]];
 
       var body = JSON.stringify({ data: array }); // change array
@@ -112,18 +104,21 @@ module.exports = function (
           res = parseFloat(str);
           if (1.0 > res > 0.5) {
             //append node and connection
-            nodes.push({ text: keywordsinput[j][0], timestamp:convertTimeStamps(keywordsinput[j][1]) });
+            nodes.push({
+              text: keywordsinput[j][0],
+              timestamp: convertTimeStamps(keywordsinput[j][1]),
+            });
             connections.push({
               source: layer1[i].text,
-              sourceTimeStamp:layer1[i].timestamp,
+              sourceTimeStamp: layer1[i].timestamp,
               target: keywordsinput[j][0],
-              targetTimeStamp: convertTimeStamps(keywordsinput[j][1])
+              targetTimeStamp: convertTimeStamps(keywordsinput[j][1]),
             });
           }
         });
     }
   }
-  
+
   firstResponse.json({
     fileName: filename,
     filePath: `/uploads/${filename}`,
