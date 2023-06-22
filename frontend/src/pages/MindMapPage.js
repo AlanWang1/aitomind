@@ -30,10 +30,14 @@ export default class MindMapPage extends Component {
     for (let i = 0; i < connections.length; i++) {
       newConnections[i] = {
         source: connections[i].source + " " + connections[i].sourceTimeStamp,
-        target: connections[i].target + " " + connections[i].targetTimeStamp
+        target: connections[i].target + " " + connections[i].targetTimeStamp,
       };
     }
-    this.setState({ videoPath: path, nodes: newNodes, connections: newConnections });
+    this.setState({
+      videoPath: path,
+      nodes: newNodes,
+      connections: newConnections,
+    });
   }
 
   async handleMindMapFetch(e) {
