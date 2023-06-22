@@ -30,7 +30,7 @@ export default class MindMapUpdateForm extends Component {
 
         <form onSubmit={this.sendUpdate}>
           <div className="columns is-multiline ">
-            <div className="column is-9">
+            <div className="column is-8">
               <label className="label has-text-weight-medium">Name</label>
               <div className="control">
                 <input
